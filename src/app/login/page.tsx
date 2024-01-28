@@ -36,6 +36,7 @@ export default function Login() {
             setRememberMe(data.rememberMe!);
         }
         const name: string = data.name;
+        
         login(name);
         router.push("/");
     };

@@ -1,12 +1,11 @@
-export interface ReportData {
+export interface ClassDetails {
+	className: string;
+	teacher: string;
+	subject: string;
 	date: string;
-	project: string;
-	task: string;
-	taskDescription: string | undefined;
-	from: string | undefined;
-	to: string | undefined;
-	employeeName?: string;
-	isExtra: boolean | undefined;
+	from?: string | undefined;
+	to?: string | undefined;
+	isArchived: boolean;
 }
 export interface User {
 	name: string;

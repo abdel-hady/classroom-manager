@@ -1,7 +1,8 @@
-import { User } from "../util/types/Reports.type";
+import { ClassDetails, User } from "../util/types/Reports.type";
 
 const EMPLOYEE_NAME_KEY: string = "employeeName";
 const REMEMBER_ME_KEY: string = "rememberMe";
+const REPORT_DATA_KEY: string = "classDetails";
 const USER_KEY: string = "user";
 
 const LocalStorageService = {
@@ -37,6 +38,16 @@ const LocalStorageService = {
 	},
 	setUserName: (user: User): void => {
 		localStorage.setItem(USER_KEY, JSON.stringify(user || ""));
+	},
+	getReportEmployee: (): ClassDetails[] => {
+		if (typeof window !== "undefined") {
+			const user = localStorage.getItem(REPORT_DATA_KEY);
+			return user ? JSON.parse(user) : "";
+		}
+		return [];
+	},
+	setReportEmployee: (user: ClassDetails[]): void => {
+		localStorage.setItem(REPORT_DATA_KEY, JSON.stringify(user || ""));
 	},
 
 };
