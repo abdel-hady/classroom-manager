@@ -9,13 +9,11 @@ import Image from "next/image";
 const TopBar: React.FC = () => {
 	const { logout } = useAuth();
 	const router = useRouter();
-	const { getEmployeeName, getRememberMe, setEmployeeName, setRememberMe } =
+	const { getRememberMe, setRememberMe } =
 		LocalStorageService;
-	const employeeName = getEmployeeName();
 	const rememberMe = getRememberMe();
 	const handleLogout = () => {
 		logout();
-		setEmployeeName(employeeName!);
 		if (rememberMe) setRememberMe(rememberMe);
 		router.push("/login");
 	};

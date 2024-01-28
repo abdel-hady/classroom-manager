@@ -2,15 +2,12 @@ import {
 	useTable,
 	Column,
 	useSortBy,
-	useRowSelect,
 	useFilters,
 	TableInstance,
 	Row,
 	TableToggleAllRowsSelectedProps,
 	TableToggleRowsSelectedProps,
 } from "react-table";
-import { Checkbox } from "./Checkbox";
-import { useEffect } from "react";
 import { TableBody } from "./table-partials/TableBody";
 import { TableHead } from "./table-partials/TableHead";
 import { ClassDetails } from "@/util/types/Reports.type";

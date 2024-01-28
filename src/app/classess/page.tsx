@@ -18,7 +18,6 @@ export default function Classess() {
     const [editIndex, setEditIndex] = useState<number | null>(null);
     const [deleteIndex, setDeleteIndex] = useState<number | null>(null);
     const [isDeleting, setIsDeleting] = useState<boolean>(false);
-    const [isArchived, setIsArchived] = useState<boolean>(false);
 
     const {
         state: isAdding,

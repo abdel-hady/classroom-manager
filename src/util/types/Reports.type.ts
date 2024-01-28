@@ -7,6 +7,13 @@ export interface ClassDetails {
 	to?: string | undefined;
 	isArchived: boolean;
 }
+export interface TeacherDetails {
+	teacherName: string;
+	address: string;
+	major: string;
+	experience: string;
+	isArchived: boolean;
+}
 export interface User {
 	name: string;
 }

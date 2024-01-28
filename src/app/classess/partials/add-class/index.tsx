@@ -56,7 +56,7 @@ export default function AddReport({ onAddReport, initialData }: Props) {
 					<ControlledTextField
 						id="teacher"
 						label={t("teacher")}
-						placeholder={t("Teacher")}
+						placeholder={t("teacher")}
 						type="text"
 						name="teacher"
 						register={register}
@@ -71,7 +71,7 @@ export default function AddReport({ onAddReport, initialData }: Props) {
 					<ControlledTextField
 						id="subject"
 						label={t("subject")}
-						placeholder={t("Subject")}
+						placeholder={t("subject")}
 						type="text"
 						name="subject"
 						register={register}
