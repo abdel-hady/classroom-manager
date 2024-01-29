@@ -7,11 +7,11 @@ import {
     Row,
     TableToggleAllRowsSelectedProps,
 } from "react-table";
-import { TeacherDetails } from "@/util/types/Reports.type";
-import { useWindowResize } from "../hooks/useWindowResize";
-import NoData from "../fail/NoData";
+import { useWindowResize } from "../class/hooks/useWindowResize";
+import NoData from "../fail/noData";
 import { TableHead } from "./table-partials/TableHead";
 import { TableBody } from "./table-partials/TableBody";
+import { TeacherDetails } from "@/util/types/Entity.type";
 
 interface TableProps {
     data: TeacherDetails[];

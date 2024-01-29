@@ -1,12 +1,12 @@
 import React from 'react';
 import { CustomModal } from '@/components/common/CustomModal';
-import EditTeacherInfo from '../edit-teacher/editTeacherInfo';
-import { TeacherDetails } from '@/util/types/Entity.type';
+import EditClassInfo from '../edit-class/editClassInfo';
+import { ClassDetails } from '@/util/types/Entity.type';
 
 interface EditModalProps {
     isOpen: boolean;
-    initialData: TeacherDetails;
-    handleUpdate: (data: TeacherDetails) => void;
+    initialData: ClassDetails;
+    handleUpdate: (data: ClassDetails) => void;
     onRequestClose: () => void;
     title: string;
 }
@@ -15,10 +15,10 @@ const EditModal = ({ isOpen, initialData, handleUpdate, onRequestClose, title }:
         <CustomModal
             isOpen={isOpen}
             onRequestClose={onRequestClose}
-            contentLabel="Edit Teacher"
+            contentLabel="Edit Class"
             className="w-[96%] sm:w-[90%] lg:w-[70%] xl:w-[60%] 2xl:w-[50%]"
         >
-            <EditTeacherInfo initialData={initialData} onUpdate={handleUpdate} title={title} />
+            <EditClassInfo initialData={initialData} onUpdate={handleUpdate} title={title} />
         </CustomModal>
     );
 };

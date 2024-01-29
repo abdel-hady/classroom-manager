@@ -1,96 +1,84 @@
 'use client'
 import React, { ChangeEvent, useEffect, useState } from 'react';
-import { IoIosSearch } from "react-icons/io";
 import { Column } from "react-table";
-import { BasicTable } from '@/components/BasicTable';
-import { ClassDetails } from '@/util/types/Reports.type';
-import TableActions from '@/components/table-columns/Columns';
-import { BasicColumns } from '@/components/BasicColumns';
-import useReportData from '@/components/hooks/useReportData';
-import ReportsTableActions from '@/components/ReportsTableActions';
-import { CustomModal } from '@/components/common/CustomModal';
-import AddReport from './partials/add-class';
-import LocalStorageService from '@/local/LocalStorageService';
-import EditReport from './partials/edit-class';
-import DeleteRow from './partials/DeleteRow';
 import { toast } from "react-toastify";
-import FilterSelect from '@/components/course-info/filterSelect';
+import AddEntityButton from '@/components/common/AddEntityButton';
+import { BasicTable } from '@/components/class/BasicTable';
+import AddModal from './partials/modal/addClass';
+import EditModal from './partials/modal/editClassInfo';
+import DeleteModal from './partials/modal/deleteClass';
+import LocalStorageServiceClass from '@/local/LocalStorageServiceClass';
+import { ClassDetails } from '@/util/types/Entity.type';
+import useClassDetails from '@/components/class/hooks/useClassDetials';
+import TableActions from '@/components/class/table-columns/Columns';
+import { BasicColumns } from '@/components/class/BasicColumns';
+import { handleAddNew, handleArchive, handleDelete, handleEdit } from '@/components/common/CommonFunctions';
+import FilterSelect from '@/components/common/Filter/filterSelect';
+import { FilterOptions } from '@/components/common/Filter/FilterOption';
 
 export default function Classess() {
     const [editIndex, setEditIndex] = useState<number | null>(null);
     const [deleteIndex, setDeleteIndex] = useState<number | null>(null);
     const [isDeleting, setIsDeleting] = useState<boolean>(false);
+    const { getClass, setClass } = LocalStorageServiceClass;
+    const [togglePopup, setTogglePopup] = useState<number | null>(null);
+    const [classDetails, setClassDetails] = useState<ClassDetails[]>(() => getClass() || []);
+    const [filter, setFilter] = useState('all');
 
+    //Destructuring the state and actions for Adding
     const {
         state: isAdding,
         setState: setIsAdding,
         stateAction: addingData,
         setStateAction: setAddingData,
-    } = useReportData();
+    } = useClassDetails();
+
+    //Dstructuring the state and actions for Editing
     const {
         state: isEditing,
         setState: setIsEditing,
         stateAction: editData,
         setStateAction: setEditData,
-    } = useReportData();
-    const [searchQuery, setSearchQuery] = useState('');
+    } = useClassDetails();
     const [isPopupOpen, setIsPopupOpen] = useState(false);
 
-    const handleSearch = (e: any) => {
-        setSearchQuery(e.target.value);
-        // Add your search logic here, such as filtering the classes based on the search query
-    };
-    const handleAddNewReport = () => {
-        setIsPopupOpen(false);
-        setIsAdding(true);
-        setAddingData(null);
-        toast.success("Task added successfully", { position: "top-right" });
-    };
-    const handleEdit = (index: number) => {
-        setIsPopupOpen(false);
-        setEditData(classDetails[index]);
-        setEditIndex(index);
-        setIsEditing(true);
-    };
-    const handleDelete = (index: number) => {
-        setIsPopupOpen(false);
-        setIsDeleting(true);
-        setDeleteIndex(index);
+    // Function to handle adding a new class and showing a success message
+    const handleAddNewClass = () => {
+        handleAddNew(setIsPopupOpen, setIsAdding, setAddingData);
     };
 
-    const handleArchive = (index: number) => {
-        const updatedClassDetails = classDetails.map((classDetail, i) => {
-            if (i === index) {
-                return {
-                    ...classDetail,
-                    isArchived: !classDetail.isArchived
-                };
-            }
-            return classDetail;
-        });
-        setClassDetails(updatedClassDetails);
-        !classDetails[index].isArchived ?
-            toast.success('Class archived successfully', { position: 'top-right' }) :
-            toast.success('Class unarchived successfully', { position: 'top-right' });
+    // Function to handle editing a class
+    const handleEditClass = (index: number) => {
+        handleEdit(index, setIsPopupOpen, setEditData, setEditIndex, setIsEditing, classDetails);
     };
+
+    // Function to handle deleting a class
+    const handleDeleteClass = (index: number) => {
+        handleDelete(index, setIsPopupOpen, setIsDeleting, setDeleteIndex);
+
+    };
+
+    // Function to handle archiving/unarchiving a class
+    const handleArchiveClass = (index: number) => {
+        handleArchive(index, classDetails, setClassDetails, "Class");
+    };
+
+    // Function to handle toggling the popup for a specific class
     const handlePopupToggle = (index: number | null) => {
         setTogglePopup(index);
         setIsPopupOpen(!isPopupOpen);
     };
-    const { getReportEmployee, setReportEmployee } = LocalStorageService;
 
-    const [togglePopup, setTogglePopup] = useState<number | null>(null);
-    const [classDetails, setClassDetails] = useState<ClassDetails[]>(() => getReportEmployee() || []);
-
+    // Columns for the table, including actions such as edit, archive, and delete
     const ActionsColumn: Column<ClassDetails>[] = [
         {
             Header: "Actions",
             accessor: undefined,
             Cell: ({ row }) => (
                 <TableActions
-                    handleEdit={handleEdit}
-                    handleArchive={handleArchive}
-                    handleDelete={handleDelete}
+                    handleEdit={handleEditClass}
+                    handleArchive={handleArchiveClass}
+                    handleDelete={handleDeleteClass}
                     isPopupOpen={isPopupOpen}
                     togglePopup={togglePopup}
                     handlePopupToggle={handlePopupToggle}
@@ -99,36 +87,41 @@ export default function Classess() {
             ),
         },
     ];
+    const columns: Column<ClassDetails>[] = [...BasicColumns, ...ActionsColumn];
+
+    // Function to handle updating a class
     const handleUpdate = (data: ClassDetails) => {
-        const updatedReportData = [...classDetails];
-        updatedReportData[editIndex!] = data;
-        setClassDetails(updatedReportData);
+        const updatedClassDetails = [...classDetails];
+        updatedClassDetails[editIndex!] = data;
+        setClassDetails(updatedClassDetails);
         setIsEditing(false);
         setEditIndex(null);
         setEditData(null);
-        toast.success("Task edited successfully", { position: "top-right" });
-
+        toast.success("Class edited successfully", { position: "top-right" });
     };
-    const handleReportSubmit = (data: ClassDetails) => {
+
+    // Function to submit class information and show a success message
+    const submitClassInfo = (data: ClassDetails) => {
         setClassDetails((prevData) => [data, ...prevData]);
         setIsAdding(false);
-        toast.success("Task added successfully", { position: "top-right" });
-
+        toast.success("Class added successfully", { position: "top-right" });
     };
+
+    // Function to handle deleting a class and show a success message
     const handleDeleteClick = () => {
-        const updatedReportData = [...classDetails];
-        updatedReportData.splice(deleteIndex!, 1);
-        setClassDetails(updatedReportData);
+        const updatedClassDetails = [...classDetails];
+        updatedClassDetails.splice(deleteIndex!, 1);
+        setClassDetails(updatedClassDetails);
         setIsDeleting(false);
-        toast.success("Task deleted successfully", { position: "top-right" });
-    };
-    const columns: Column<ClassDetails>[] = [...BasicColumns, ...ActionsColumn];
-    const [filter, setFilter] = useState('all');
+        toast.success("Class deleted successfully", { position: "top-right" });
+    }
 
+    // Function to handle filter change
     const handleFilterChange = (e: ChangeEvent<HTMLSelectElement>) => {
         setFilter(e.target.value);
     };
 
+    // Filtering the classDetails based on the selected filter
     const filteredClassDetails = classDetails.filter((detail) => {
         if (filter === 'archived') {
             return detail.isArchived;
@@ -138,57 +131,47 @@ export default function Classess() {
         return true;
     });
 
-    const classessFilterOptions = [{ value: "all", label: "All" }, { value: "archived", label: "Archived" }, { value: "unarchived", label: "Unarchived" }]
+    // Determine the data to display based on the selected filter
     const dataToDisplay = filter === 'all' ? classDetails : filteredClassDetails;
+
+    // Update the classDetails in local storage when classDetails or the filtered data changes
     useEffect(() => {
-        setReportEmployee(classDetails);
-    }, [classDetails, setReportEmployee, filteredClassDetails]);
+        setClass(classDetails);
+    }, [classDetails, setClass, filteredClassDetails]);
 
     return (
         <>
             <div className='w-full flex flex-col'>
                 <div className='w-full flex justify-between'>
-                    <div className="flex items-center gap-2 text-gray-900">
-                        <FilterSelect value={filter} options={classessFilterOptions} onChange={handleFilterChange} />
-                    </div>
-                    <div>
-                        <ReportsTableActions
-                            handleAddRows={handleAddNewReport}
-                            reportData={classDetails}
-                        />
-                    </div>
+                    <FilterSelect value={filter} options={FilterOptions} onChange={handleFilterChange} />
+                    <AddEntityButton
+                        handleAddEntity={handleAddNewClass}
+                        entityType="New Class"
+                    />
                 </div>
                 <BasicTable
                     data={dataToDisplay}
                     columns={columns}
                 />
-                <CustomModal
+                <AddModal
                     isOpen={isAdding}
+                    handleAddClass={submitClassInfo}
                     onRequestClose={() => setIsAdding(false)}
-                    contentLabel="Add Report"
-                    className="w-[96%] sm:w-[90%] lg:w-[70%] xl:w-[60%] 2xl:w-[50%]"
-                >
-                    <AddReport onAddReport={handleReportSubmit} />
-                </CustomModal>
-                <CustomModal
+                    title="Add New Class"
+                />
+                <EditModal
                     isOpen={isEditing}
+                    initialData={editData!}
+                    handleUpdate={handleUpdate}
                     onRequestClose={() => setIsEditing(false)}
-                    contentLabel="Edit Report"
-                    className="w-[96%] sm:w-[90%] lg:w-[70%] xl:w-[60%] 2xl:w-[50%]"
-                >
-                    <EditReport initialData={editData!} onUpdate={handleUpdate} />
-                </CustomModal>
-                <CustomModal
+                    title="Edit Class Info"
+                />
+                <DeleteModal
                     isOpen={isDeleting}
+                    setIsDeleting={setIsDeleting}
+                    handleDeleteClick={handleDeleteClick}
                     onRequestClose={() => setIsDeleting(false)}
-                    contentLabel="Delete Report"
-                    className="left-1/3 top-1/3 w-[90%] sm:w-[70%] md:w-[60%] lg:w-[50%] xl:w-[40%] 2xl:w-[35%]"
-                >
-                    <DeleteRow
-                        setIsDeleting={setIsDeleting}
-                        handleDeleteClick={handleDeleteClick}
-                    />
-                </CustomModal>
+                />
             </div>
         </>
     )

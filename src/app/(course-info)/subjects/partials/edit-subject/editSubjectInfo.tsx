@@ -2,29 +2,29 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useTranslation } from "react-i18next";
 import { LuFileEdit } from "react-icons/lu";
-import { TeacherSchema } from "@/components/teacher/TeacherSchema";
 import ActionBtn from "@/components/common/ActionBtn";
-import { TeacherDetails } from "@/util/types/Entity.type";
-import ControlledTextField from "@/components/teacher/ControlledTextField";
+import { SubjectDetails } from "@/util/types/Entity.type";
+import { SubjectSchema } from "@/components/subject/SubjectSchema";
+import ControlledTextField from "@/components/subject/ControlledTextField";
 
 interface Props {
-    initialData: TeacherDetails;
-    onUpdate: (data: TeacherDetails) => void;
+    initialData: SubjectDetails;
+    onUpdate: (data: SubjectDetails) => void;
     title: string;
 }
-export default function EditTeacherInfo({ initialData, onUpdate, title }: Props) {
+export default function EditSubjectInfo({ initialData, onUpdate, title }: Props) {
     const { t } = useTranslation();
-    const schema = TeacherSchema(t);
+    const schema = SubjectSchema(t);
     const {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm<TeacherDetails>({
+    } = useForm<SubjectDetails>({
         defaultValues: initialData,
-        resolver: yupResolver<TeacherDetails>(schema),
+        resolver: yupResolver<SubjectDetails>(schema),
     });
 
-    const onSubmit = (data: TeacherDetails) => {
+    const onSubmit = (data: SubjectDetails) => {
         onUpdate(data);
     };
     return (
@@ -33,50 +33,50 @@ export default function EditTeacherInfo({ initialData, onUpdate, title }: Props)
                 <div className="text-gray-500 bold text-center text-2xl">{title}</div>
                 <div className="w-full flex flex-col md:flex-row gap-5">
                     <ControlledTextField
-                        id="teacherName"
-                        label={t("teacherName")}
-                        placeholder={t("Class Name")}
+                        id="subjectName"
+                        label={t("subjectName")}
+                        placeholder={t("Subject Name")}
                         type="text"
-                        name="teacherName"
+                        name="subjectName"
                         register={register}
-                        error={errors.teacherName?.message ? errors.teacherName?.message : undefined}
+                        error={errors.subjectName?.message ? errors.subjectName?.message : undefined}
                         className="w-full md:w-[50%]"
                     />
                     <ControlledTextField
-                        id="major"
-                        label={t("major")}
-                        placeholder={t("major")}
+                        id="agenda"
+                        label={t("agenda")}
+                        placeholder={t("agenda")}
                         type="text"
-                        name="major"
+                        name="agenda"
                         register={register}
                         error={
-                            errors.major?.message ? errors.major?.message : undefined
+                            errors.agenda?.message ? errors.agenda?.message : undefined
                         }
                         className="w-full md:w-[50%]"
                     />
                 </div>
                 <div className="w-full flex flex-col md:flex-row gap-5">
                     <ControlledTextField
-                        id="experience"
-                        label={t("experience")}
-                        placeholder={t("experience")}
+                        id="participants"
+                        label={t("participants")}
+                        placeholder={t("participants")}
                         type="text"
-                        name="experience"
+                        name="participants"
                         register={register}
                         error={
-                            errors.experience?.message ? errors.experience?.message : undefined
+                            errors.participants?.message ? errors.participants?.message : undefined
                         }
                         className="w-full md:w-[50%]"
                     />
                     <ControlledTextField
-                        id="address"
-                        label={t("address")}
-                        placeholder={t("address")}
+                        id="objectives"
+                        label={t("objectives")}
+                        placeholder={t("objectives")}
                         type="text"
-                        name="address"
+                        name="objectives"
                         register={register}
                         error={
-                            errors.address?.message ? errors.address?.message : undefined
+                            errors.objectives?.message ? errors.objectives?.message : undefined
                         }
                         className="w-full md:w-[50%]"
                     />

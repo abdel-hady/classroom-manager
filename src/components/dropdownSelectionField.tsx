@@ -16,6 +16,7 @@ export default function DropdownSelectionField({
 				<option disabled selected value="-1">All</option>
 				{options.map((op) => (
 					<option value={op.value} className="capitalize">{op.label}</option>
+
 				))}
 			</select>
 		</div>

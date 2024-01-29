@@ -1,6 +1,6 @@
 import { HeaderGroup, TableSortByToggleProps } from "react-table";
-import { RxCaretSort } from "react-icons/rx";
-import { TeacherDetails } from "@/util/types/Reports.type";
+import { RxCaretSort } from "react-icons/rx"
+import { TeacherDetails } from "@/util/types/Entity.type";
 interface TableHeadProps {
     headerGroups: HeaderGroup<TeacherDetails>[];
     isSmallScreen: boolean;

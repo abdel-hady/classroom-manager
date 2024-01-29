@@ -1,4 +1,4 @@
-import { TeacherDetails } from "@/util/types/Reports.type";
+import { TeacherDetails } from "@/util/types/Entity.type";
 import { Column } from "react-table";
 
 export const BasicColumns: Column<TeacherDetails>[] = [

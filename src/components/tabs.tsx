@@ -1,11 +1,8 @@
 'use client'
 import React from "react";
-import { IoMdAddCircle } from "react-icons/io";
-import { MdOutlineDeleteOutline } from "react-icons/md";
-import ActionBtn from "./common/ActionBtn";
-import { ClassDetails } from "@/util/types/Reports.type";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { ClassDetails } from "@/util/types/Entity.type";
 
 interface Props {
 	username: string;

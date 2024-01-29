@@ -1,4 +1,4 @@
-import { TeacherDetails } from "@/util/types/Reports.type";
+import { TeacherDetails } from "@/util/types/Entity.type";
 import { Row, TableBodyPropGetter } from "react-table";
 
 interface TableBodyProps {

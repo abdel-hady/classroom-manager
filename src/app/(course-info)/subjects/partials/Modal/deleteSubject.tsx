@@ -8,12 +8,12 @@ interface DeleteModalProps {
     handleDeleteClick: () => void;
     onRequestClose: () => void;
 }
-const DeleteModal = ({ isOpen, setIsDeleting, handleDeleteClick, onRequestClose }:DeleteModalProps) => {
+const DeleteModal = ({ isOpen, setIsDeleting, handleDeleteClick, onRequestClose }: DeleteModalProps) => {
     return (
         <CustomModal
             isOpen={isOpen}
             onRequestClose={onRequestClose}
-            contentLabel="Delete Teacher"
+            contentLabel="Delete Subject"
             className="w-[90%] sm:w-[70%] md:w-[60%] lg:w-[50%] xl:w-[40%] 2xl:w-[35%]"
         >
             <DeleteRow setIsDeleting={setIsDeleting} handleDeleteClick={handleDeleteClick} />

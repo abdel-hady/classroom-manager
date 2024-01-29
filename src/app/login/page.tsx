@@ -2,7 +2,7 @@
 import { useAuth } from "../../providers/AuthProvider";
 import LoginForm from "./partials/LoginForm";
 import { useState } from "react";
-import LocalStorageService from "../../local/LocalStorageService";
+import LocalStorageService from "../../local/LocalStorageServiceClass";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 
@@ -36,7 +36,7 @@ export default function Login() {
             setRememberMe(data.rememberMe!);
         }
         const name: string = data.name;
-        
+
         login(name);
         router.push("/");
     };
