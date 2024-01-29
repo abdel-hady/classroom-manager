@@ -7,7 +7,6 @@ import { IoMdAddCircle } from "react-icons/io";
 import { ClassSchema } from "@/components/class/ClassSchema";
 import ControlledTextField from "@/components/class/ControlledTextField";
 import { useState } from "react";
-import DropdownSelectionField from "@/components/dropdownSelectionField";
 import SelectDropdown from "@/components/common/SelectDropdown";
 
 type AsyncDefaultValues = {
@@ -17,7 +16,7 @@ type AsyncDefaultValues = {
 	subject?: string;
 	from?: string;
 	to?: string;
-	isArchived: boolean;
+	isArchived?: boolean;
 };
 interface Props {
 	initialData?: AsyncDefaultValues;

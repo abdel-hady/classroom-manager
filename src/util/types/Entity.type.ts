@@ -5,19 +5,19 @@ export interface ClassDetails {
 	date: string;
 	from?: string | undefined;
 	to?: string | undefined;
-	isArchived: boolean;
+	isArchived?: boolean;
 }
 export interface TeacherDetails {
 	teacherName: string;
 	address: string;
 	major: string;
 	experience: string;
-	isArchived: boolean;
+	isArchived?: boolean;
 }
 export interface SubjectDetails {
 	subjectName: string;
 	agenda: string;
 	participants: string;
 	objectives: string;
-	isArchived: boolean;
+	isArchived?: boolean;
 }

@@ -12,7 +12,7 @@ type AsyncDefaultValues = {
 	agenda?: string;
 	participants?: string;
 	objectives?: string;
-    isArchived: boolean;
+    isArchived?: boolean;
 };
 
 interface Props {

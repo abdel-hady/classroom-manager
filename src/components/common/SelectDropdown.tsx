@@ -2,13 +2,9 @@
 import React from 'react';
 import { ControlledDropdownProps } from '../input/data';
 
-
 export default function SelectDropdown({
     label, name, register, errors, options,
 }: ControlledDropdownProps) {
-    console.log(name)
-    console.log(errors)
-    console.log(options)
     return (
         <div className="form-control relative w-full md:w-[50%]">
             <select id={name} name={name}
@@ -20,7 +16,7 @@ export default function SelectDropdown({
                 <option disabled selected value="-1">{'pick_one'}</option>
 
                 {options.map((op) => (
-                    <option value={op[label]} className="capitalize">{op[label]}</option>
+                    <option value={op.value} className="capitalize">{op.label}</option>
 
                 ))}
             </select>
