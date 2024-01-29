@@ -1,10 +1,10 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useTranslation } from "react-i18next";
-import { ClassDetails } from "../../../../util/types/Reports.type";
-import ActionBtn from "../../../../components/common/ActionBtn";
+import { ClassDetails } from "../../../../../util/types/Reports.type";
+import ActionBtn from "../../../../../components/common/ActionBtn";
 import { LuFileEdit } from "react-icons/lu";
-import ControlledTextField from "../../../../components/input/ControlledTextField";
+import ControlledTextField from "../../../../../components/input/ControlledTextField";
 import { ClassSchema } from "@/components/ClassSchema";
 
 interface Props {

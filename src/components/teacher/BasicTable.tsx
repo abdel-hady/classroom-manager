@@ -2,12 +2,10 @@ import {
     useTable,
     Column,
     useSortBy,
-    useRowSelect,
     useFilters,
     TableInstance,
     Row,
     TableToggleAllRowsSelectedProps,
-    TableToggleRowsSelectedProps,
 } from "react-table";
 import { TeacherDetails } from "@/util/types/Reports.type";
 import { useWindowResize } from "../hooks/useWindowResize";
@@ -18,20 +16,16 @@ import { TableBody } from "./table-partials/TableBody";
 interface TableProps {
     data: TeacherDetails[];
     columns: Column<TeacherDetails>[];
-    // onSelectedRowsChange: (selectedRows: ClassDetails[]) => void;
 }
 interface TableInstanceWithSelection<T extends object>
     extends TableInstance<T> {
     selectedFlatRows: Row<T>[];
     getToggleAllRowsSelectedProps: () => TableToggleAllRowsSelectedProps;
 }
-interface CustomRow<T extends object> extends Row<T> {
-    getToggleRowSelectedProps: () => TableToggleRowsSelectedProps;
-}
+
 export function BasicTable({
     data,
     columns,
-    // onSelectedRowsChange,
 }: TableProps) {
     const isSmallScreen = useWindowResize();
     const {
@@ -40,8 +34,6 @@ export function BasicTable({
         headerGroups,
         rows,
         prepareRow,
-        selectedFlatRows,
-        getToggleAllRowsSelectedProps,
     } = useTable<TeacherDetails>(
         { columns, data },
         useFilters,
@@ -55,10 +47,6 @@ export function BasicTable({
         }
     ) as TableInstanceWithSelection<TeacherDetails>;
 
-    // called when the selected rows have changed
-    // useEffect(() => {
-    // 	onSelectedRowsChange(selectedFlatRows.map((row) => row.original));
-    // }, [selectedFlatRows.length]);
     return (
         <div className="w-full flex flex-col justify-center items-center">
             <table className="w-full mt-8" {...getTableProps()}>

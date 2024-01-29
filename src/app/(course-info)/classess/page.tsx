@@ -1,26 +1,25 @@
 'use client'
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import { IoIosSearch } from "react-icons/io";
-import { Column, useFilters } from "react-table";
-import { TeacherDetails } from '@/util/types/Reports.type';
+import { Column } from "react-table";
+import { BasicTable } from '@/components/BasicTable';
+import { ClassDetails } from '@/util/types/Reports.type';
+import TableActions from '@/components/table-columns/Columns';
+import { BasicColumns } from '@/components/BasicColumns';
+import useReportData from '@/components/hooks/useReportData';
+import ReportsTableActions from '@/components/ReportsTableActions';
 import { CustomModal } from '@/components/common/CustomModal';
-import ReportsTableActions from '@/components/teacher/ReportsTableActions';
-import AddReport from './partials/add-teacher';
-import { BasicTable } from '@/components/teacher/BasicTable';
-import { BasicColumns } from '@/components/teacher/BasicColumns';
-import TableActions from '@/components/teacher/table-columns/Columns';
-import useReportData from '@/components/teacher/hooks/useReportData';
-import LocalStorageService2 from '@/local/LocalStorageService2';
-import EditReport from './partials/edit-teacher';
+import AddReport from './partials/add-class';
+import LocalStorageService from '@/local/LocalStorageService';
+import EditReport from './partials/edit-class';
 import DeleteRow from './partials/DeleteRow';
-// import EditReport from './partials/edit-class';
-// import DeleteRow from './partials/DeleteRow';
+import { toast } from "react-toastify";
+import FilterSelect from '@/components/course-info/filterSelect';
 
-export default function Teachers() {
+export default function Classess() {
     const [editIndex, setEditIndex] = useState<number | null>(null);
     const [deleteIndex, setDeleteIndex] = useState<number | null>(null);
     const [isDeleting, setIsDeleting] = useState<boolean>(false);
-    const [isArchived, setIsArchived] = useState<boolean>(false);
 
     const {
         state: isAdding,
@@ -45,11 +44,11 @@ export default function Teachers() {
         setIsPopupOpen(false);
         setIsAdding(true);
         setAddingData(null);
+        toast.success("Task added successfully", { position: "top-right" });
     };
-
     const handleEdit = (index: number) => {
         setIsPopupOpen(false);
-        setEditData(teacherDetails[index]);
+        setEditData(classDetails[index]);
         setEditIndex(index);
         setIsEditing(true);
     };
@@ -58,28 +57,32 @@ export default function Teachers() {
         setIsDeleting(true);
         setDeleteIndex(index);
     };
+
     const handleArchive = (index: number) => {
-        const updatedTeacherDetails = teacherDetails.map((teacherDetail, i) => {
+        const updatedClassDetails = classDetails.map((classDetail, i) => {
             if (i === index) {
                 return {
-                    ...teacherDetail,
-                    isArchived: !teacherDetail.isArchived
+                    ...classDetail,
+                    isArchived: !classDetail.isArchived
                 };
             }
-            return teacherDetail;
+            return classDetail;
         });
-        setTeacherDetails(updatedTeacherDetails);
+        setClassDetails(updatedClassDetails);
+        !classDetails[index].isArchived ?
+            toast.success('Class archived successfully', { position: 'top-right' }) :
+            toast.success('Class unarchived successfully', { position: 'top-right' });
     };
     const handlePopupToggle = (index: number | null) => {
         setTogglePopup(index);
         setIsPopupOpen(!isPopupOpen);
     };
-    const { getReportEmployee2, setReportEmployee2 } = LocalStorageService2;
-    const [teacherDetails, setTeacherDetails] = useState<TeacherDetails[]>(() => getReportEmployee2() || []);
+    const { getReportEmployee, setReportEmployee } = LocalStorageService;
 
     const [togglePopup, setTogglePopup] = useState<number | null>(null);
+    const [classDetails, setClassDetails] = useState<ClassDetails[]>(() => getReportEmployee() || []);
 
-    const ActionsColumn: Column<TeacherDetails>[] = [
+    const ActionsColumn: Column<ClassDetails>[] = [
         {
             Header: "Actions",
             accessor: undefined,
@@ -96,32 +99,37 @@ export default function Teachers() {
             ),
         },
     ];
-    const handleUpdate = (data: TeacherDetails) => {
-        const updatedReportData = [...teacherDetails];
+    const handleUpdate = (data: ClassDetails) => {
+        const updatedReportData = [...classDetails];
         updatedReportData[editIndex!] = data;
-        setTeacherDetails(updatedReportData);
+        setClassDetails(updatedReportData);
         setIsEditing(false);
         setEditIndex(null);
         setEditData(null);
+        toast.success("Task edited successfully", { position: "top-right" });
+
     };
-    const handleReportSubmit = (data: TeacherDetails) => {
-        setTeacherDetails((prevData) => [data, ...prevData]);
+    const handleReportSubmit = (data: ClassDetails) => {
+        setClassDetails((prevData) => [data, ...prevData]);
         setIsAdding(false);
+        toast.success("Task added successfully", { position: "top-right" });
+
     };
     const handleDeleteClick = () => {
-        const updatedReportData = [...teacherDetails];
+        const updatedReportData = [...classDetails];
         updatedReportData.splice(deleteIndex!, 1);
-        setTeacherDetails(updatedReportData);
+        setClassDetails(updatedReportData);
         setIsDeleting(false);
+        toast.success("Task deleted successfully", { position: "top-right" });
     };
-    const columns: Column<TeacherDetails>[] = [...BasicColumns, ...ActionsColumn];
+    const columns: Column<ClassDetails>[] = [...BasicColumns, ...ActionsColumn];
     const [filter, setFilter] = useState('all');
 
     const handleFilterChange = (e: ChangeEvent<HTMLSelectElement>) => {
         setFilter(e.target.value);
     };
 
-    const filteredTeacherDetails = teacherDetails.filter((detail) => {
+    const filteredClassDetails = classDetails.filter((detail) => {
         if (filter === 'archived') {
             return detail.isArchived;
         } else if (filter === 'unarchived') {
@@ -130,43 +138,23 @@ export default function Teachers() {
         return true;
     });
 
-    const teacheresFilterOptions = [{ value: "all", label: "All" }, { value: "archived", label: "Archived" }, { value: "unarchived", label: "Unarchived" }]
-    const dataToDisplay = filter === 'all' ? teacherDetails : filteredTeacherDetails;
+    const classessFilterOptions = [{ value: "all", label: "All" }, { value: "archived", label: "Archived" }, { value: "unarchived", label: "Unarchived" }]
+    const dataToDisplay = filter === 'all' ? classDetails : filteredClassDetails;
     useEffect(() => {
-        setReportEmployee2(teacherDetails);
-    }, [teacherDetails, setReportEmployee2, filteredTeacherDetails]);
+        setReportEmployee(classDetails);
+    }, [classDetails, setReportEmployee, filteredClassDetails]);
 
     return (
         <>
             <div className='w-full flex flex-col'>
                 <div className='w-full flex justify-between'>
                     <div className="flex items-center gap-2 text-gray-900">
-                        <input
-                            type="text"
-                            value={searchQuery}
-                            onChange={handleSearch}
-                            placeholder="Search for Teacheres"
-                            className=" border border-gray-300 focus:border-[#117578] text-base rounded-lg focus:outline-none block w-full p-2.5 dark:placeholder-gray-400"
-                        />
-                        <button
-                            type="button"
-                            className="ml-2"
-                            onClick={() => {
-                                // Add your search logic here, such as filtering the classes based on the search query
-                            }}
-                        >
-                            <IoIosSearch size={28} color='#117578' />
-                        </button>
-                        <select value={filter} onChange={handleFilterChange} className='p-2.5 rounded-lg border border-gray-300 focus:border-[#117578] focus:outline-none'>
-                            {teacheresFilterOptions.map((op) => (
-                                <option value={op.value} className="capitalize">{op.label}</option>
-                            ))}
-                        </select>
+                        <FilterSelect value={filter} options={classessFilterOptions} onChange={handleFilterChange} />
                     </div>
                     <div>
                         <ReportsTableActions
                             handleAddRows={handleAddNewReport}
-                            reportData={teacherDetails}
+                            reportData={classDetails}
                         />
                     </div>
                 </div>
@@ -194,7 +182,7 @@ export default function Teachers() {
                     isOpen={isDeleting}
                     onRequestClose={() => setIsDeleting(false)}
                     contentLabel="Delete Report"
-                    className="w-[90%] sm:w-[70%] md:w-[60%] lg:w-[50%] xl:w-[40%] 2xl:w-[35%]"
+                    className="left-1/3 top-1/3 w-[90%] sm:w-[70%] md:w-[60%] lg:w-[50%] xl:w-[40%] 2xl:w-[35%]"
                 >
                     <DeleteRow
                         setIsDeleting={setIsDeleting}

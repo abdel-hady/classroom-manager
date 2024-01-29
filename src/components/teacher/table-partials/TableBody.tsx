@@ -28,7 +28,9 @@ export function TableBody({
                         {row.cells.map((cell) => {
                             return (
                                 <td
-                                    className={`text-center py-4 text-gray-500 ${(cell.column.id === "from" || cell.column.id === "to") &&
+                                    className={`text-center py-4 text-gray-500 
+                                            ${(cell.column.id === "from" ||
+                                            cell.column.id === "to") &&
                                             isSmallScreen
                                             ? "hidden"
                                             : "table-cell"

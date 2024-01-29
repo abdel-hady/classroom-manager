@@ -14,9 +14,9 @@ interface Props {
 	classDetails: ClassDetails[];
 }
 const navLinks = [
-	{ name: "classess", href: "/classess" },
-	{ name: "teachers", href: "/teachers" },
-	{ name: "subjects", href: "/subjects" },
+	{ name: "Classess", href: "/classess" },
+	{ name: "Teachers", href: "/teachers" },
+	{ name: "Subjects", href: "/subjects" },
 ]
 export default function Tabs() {
 	const pathname = usePathname();

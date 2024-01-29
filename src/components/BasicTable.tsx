@@ -53,11 +53,6 @@ export function BasicTable({
 			});
 		}
 	) as TableInstanceWithSelection<ClassDetails>;
-
-	// called when the selected rows have changed
-	// useEffect(() => {
-	// 	onSelectedRowsChange(selectedFlatRows.map((row) => row.original));
-	// }, [selectedFlatRows.length]);
 	return (
 		<div className="w-full flex flex-col justify-center items-center">
 			<table className="w-full mt-8" {...getTableProps()}>
