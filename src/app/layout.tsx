@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import TopBar from "@/components/TopBar";
 import Tabs from "@/components/tabs";
+import ClientToastContainer from "@/components/toast-container";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,6 +27,7 @@ export default function RootLayout({
             <div className="w-full sm:w-[90%] p-0 rounded-3xl h-[100%] flex flex-col gap-5">
               <Tabs />
               <div className="bg-[#ffffffb5] p-8 w-full flex justify-center items-start min-h-[350px] lg:min-h-[100%] xl:min-h-[715px] overflow-auto scrollbar-none rounded-xl shadow-lg">
+                <ClientToastContainer />
                 {children}
               </div>
             </div>

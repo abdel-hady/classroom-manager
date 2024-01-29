@@ -11,7 +11,7 @@ export default function DeleteRow({
 	handleDeleteClick,
 }: DeleteRowProps) {
 	return (
-		<div className="mt-2">
+		<div className="mt-2 left-1/2">
 			<p className="text-xl text-gray-500">
 				Are you sure you want to delete this row
 			</p>

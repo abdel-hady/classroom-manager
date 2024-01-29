@@ -1,7 +1,7 @@
 'use client'
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import { IoIosSearch } from "react-icons/io";
-import { Column, useFilters } from "react-table";
+import { Column } from "react-table";
 import { BasicTable } from '@/components/BasicTable';
 import { ClassDetails } from '@/util/types/Reports.type';
 import TableActions from '@/components/table-columns/Columns';
@@ -13,6 +13,7 @@ import AddReport from './partials/add-class';
 import LocalStorageService from '@/local/LocalStorageService';
 import EditReport from './partials/edit-class';
 import DeleteRow from './partials/DeleteRow';
+import { toast } from "react-toastify";
 
 export default function Classess() {
     const [editIndex, setEditIndex] = useState<number | null>(null);
@@ -42,8 +43,8 @@ export default function Classess() {
         setIsPopupOpen(false);
         setIsAdding(true);
         setAddingData(null);
+        toast.success("Task added successfully", { position: "top-right" });
     };
-
     const handleEdit = (index: number) => {
         setIsPopupOpen(false);
         setEditData(classDetails[index]);
@@ -55,6 +56,7 @@ export default function Classess() {
         setIsDeleting(true);
         setDeleteIndex(index);
     };
+
     const handleArchive = (index: number) => {
         const updatedClassDetails = classDetails.map((classDetail, i) => {
             if (i === index) {
@@ -66,6 +68,9 @@ export default function Classess() {
             return classDetail;
         });
         setClassDetails(updatedClassDetails);
+        !classDetails[index].isArchived ?
+            toast.success('Class archived successfully', { position: 'top-right' }) :
+            toast.success('Class unarchived successfully', { position: 'top-right' });
     };
     const handlePopupToggle = (index: number | null) => {
         setTogglePopup(index);
@@ -100,16 +105,21 @@ export default function Classess() {
         setIsEditing(false);
         setEditIndex(null);
         setEditData(null);
+        toast.success("Task edited successfully", { position: "top-right" });
+
     };
     const handleReportSubmit = (data: ClassDetails) => {
         setClassDetails((prevData) => [data, ...prevData]);
         setIsAdding(false);
+        toast.success("Task added successfully", { position: "top-right" });
+
     };
     const handleDeleteClick = () => {
         const updatedReportData = [...classDetails];
         updatedReportData.splice(deleteIndex!, 1);
         setClassDetails(updatedReportData);
         setIsDeleting(false);
+        toast.success("Task deleted successfully", { position: "top-right" });
     };
     const columns: Column<ClassDetails>[] = [...BasicColumns, ...ActionsColumn];
     const [filter, setFilter] = useState('all');
@@ -191,7 +201,7 @@ export default function Classess() {
                     isOpen={isDeleting}
                     onRequestClose={() => setIsDeleting(false)}
                     contentLabel="Delete Report"
-                    className="w-[90%] sm:w-[70%] md:w-[60%] lg:w-[50%] xl:w-[40%] 2xl:w-[35%]"
+                    className="left-1/3 top-1/3 w-[90%] sm:w-[70%] md:w-[60%] lg:w-[50%] xl:w-[40%] 2xl:w-[35%]"
                 >
                     <DeleteRow
                         setIsDeleting={setIsDeleting}

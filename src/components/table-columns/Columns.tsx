@@ -81,14 +81,14 @@ export default function TableActions({
 						className="hover:dark:text-yellow-500 cursor-pointer hover:scale-105"
 						onClick={() => handleArchive(parseInt(row.id))}
 						data-tooltip-id="my-tooltip"
-						data-tooltip-content="show row"
+						data-tooltip-content="archive row"
 					/> :
 					<MdOutlineUnarchive
 						size={32}
 						className="hover:dark:text-yellow-500 cursor-pointer hover:scale-105"
 						onClick={() => { handleArchive(parseInt(row.id)) }}
 						data-tooltip-id="my-tooltip"
-						data-tooltip-content="show row"
+						data-tooltip-content="unarchive row"
 					/>
 				}
 				<RiDeleteBin6Line

@@ -24,22 +24,19 @@ export function CustomModal({
 			ariaHideApp={false}
 			className={`absolute 
                         bg-white
-						 top-1/2
-							left-1/2
+						 top-1/4
+						 left-1/4
 							right-auto
 							bottom-auto
-							-translate-x-1/2 outline-none -translate-y-1/2 p-5 sm:px-10 sm:py-6 rounded-lg ${className}`}
+							-translate-x-1/2 outline-none -translate-y-1/2 p-5 sm:px-10 sm:py-6 rounded-lg animate-fade-down ${className}`}
 			style={{
 				overlay: {
 					backgroundColor: "rgba(0,0,0,0.5)",
 				},
 				content: {
-					top: "50%",
-					left: "50%",
 					right: "auto",
 					bottom: "auto",
 					marginRight: "-50%",
-					transform: "translate(-50%, -50%)",
 				},
 			}}
 		>
