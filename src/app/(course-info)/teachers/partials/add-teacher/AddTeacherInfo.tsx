@@ -1,30 +1,40 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { LuFileEdit } from "react-icons/lu";
-import { TeacherSchema } from "@/components/teacher/TeacherSchema";
+import { IoMdAddCircle } from "react-icons/io";
 import ActionBtn from "@/components/common/ActionBtn";
+import { TeacherSchema } from "@/components/teacher/TeacherSchema";
 import { TeacherDetails } from "@/util/types/Entity.type";
 import ControlledTextField from "@/components/teacher/ControlledTextField";
 
+type AsyncDefaultValues = {
+    experience?: string;
+    name?: string;
+    major?: string;
+    address?: string;
+    isArchived: boolean;
+};
 interface Props {
-    initialData: TeacherDetails;
-    onUpdate: (data: TeacherDetails) => void;
+    initialData?: AsyncDefaultValues;
+    onAddTeacher: (data: TeacherDetails) => void;
     title: string;
 }
-export default function EditTeacherInfo({ initialData, onUpdate, title }: Props) {
+export default function AddTeacher({ onAddTeacher, initialData, title }: Props) {
     const schema = TeacherSchema();
     const {
         register,
         handleSubmit,
         formState: { errors },
+        reset,
     } = useForm<TeacherDetails>({
         defaultValues: initialData,
         resolver: yupResolver<TeacherDetails>(schema),
     });
 
     const onSubmit = (data: TeacherDetails) => {
-        onUpdate(data);
+        reset({});
+        onAddTeacher(data);
     };
+
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <div className="flex flex-col gap-5">
@@ -33,11 +43,11 @@ export default function EditTeacherInfo({ initialData, onUpdate, title }: Props)
                     <ControlledTextField
                         id="teacherName"
                         label={"teacherName"}
-                        placeholder={"Class Name"}
+                        placeholder={"Teacher Name"}
                         type="text"
-                        name="teacherName"
+                        name="name"
                         register={register}
-                        error={errors.teacherName?.message ? errors.teacherName?.message : undefined}
+                        error={errors.name?.message ? errors.name?.message : undefined}
                         className="w-full md:w-[50%]"
                     />
                     <ControlledTextField
@@ -55,18 +65,6 @@ export default function EditTeacherInfo({ initialData, onUpdate, title }: Props)
                 </div>
                 <div className="w-full flex flex-col md:flex-row gap-5">
                     <ControlledTextField
-                        id="experience"
-                        label={"experience"}
-                        placeholder={"experience"}
-                        type="text"
-                        name="experience"
-                        register={register}
-                        error={
-                            errors.experience?.message ? errors.experience?.message : undefined
-                        }
-                        className="w-full md:w-[50%]"
-                    />
-                    <ControlledTextField
                         id="address"
                         label={"address"}
                         placeholder={"address"}
@@ -78,11 +76,37 @@ export default function EditTeacherInfo({ initialData, onUpdate, title }: Props)
                         }
                         className="w-full md:w-[50%]"
                     />
+                    <ControlledTextField
+                        id="experience"
+                        label={"experience"}
+                        placeholder={"experience"}
+                        type="text"
+                        name="experience"
+                        register={register}
+                        error={
+                            errors.experience?.message ? errors.experience?.message : undefined
+                        }
+                        className="w-full md:w-[50%]"
+                    />
                 </div>
             </div>
+            <div className="relative flex justify-start rounded-lg">
+                <label
+                    htmlFor="isArchived"
+                    className="inline-flex items-center cursor-pointer"
+                >
+                    <input
+                        type="checkbox"
+                        id="isArchived"
+                        {...register("isArchived")}
+                        className="h-4 w-4 accent-secondaryColor cursor-pointer"
+                    />
+                    <span className="ml-2 text-gray-700">{"archived_class"}</span>
+                </label>
+            </div>
             <div className="flex flex-row gap-5 justify-between mt-4">
-                <ActionBtn type="submit" className="bg-yellow-300" text={"Edit"}>
-                    <LuFileEdit
+                <ActionBtn type="submit" className="bg-primaryColor hover:bg-secondaryColor" text={"Add"}>
+                    <IoMdAddCircle
                         size={24}
                         className="theme-icon dark:text-white transform transition-all duration-500 ease-in-out cursor-pointer hover:scale-110"
                     />

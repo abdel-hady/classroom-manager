@@ -24,8 +24,8 @@ export function CustomModal({
 			ariaHideApp={false}
 			className={`absolute 
                         bg-white
-						 top-1/4
-						 left-1/4
+						top-1/4
+						left-1/4
 							right-auto
 							bottom-auto
 							-translate-x-1/2 outline-none -translate-y-1/2 p-5 sm:px-10 sm:py-6 rounded-lg animate-fade-down ${className}`}

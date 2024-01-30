@@ -13,11 +13,10 @@ export default function SelectDropdown({
                     : ""
                     }`}
                 {...register(name)}>
-                <option disabled selected value="-1">{'pick_one'}</option>
+                <option disabled selected value="-1">pick one</option>
 
                 {options.map((op) => (
                     <option value={op.value} className="capitalize">{op.label}</option>
-
                 ))}
             </select>
             <label className={`bg-white absolute text-sm text-gray-500 py-1 dark:text-gray-600 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[1] px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-0 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 ${errors ? "dark:border-red-500 peer-focus:dark:text-red-500" : ""

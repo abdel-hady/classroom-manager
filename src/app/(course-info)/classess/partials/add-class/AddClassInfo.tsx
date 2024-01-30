@@ -23,7 +23,7 @@ interface Props {
 	title: string;
 }
 export default function AddClass({ onAddClass, initialData, title }: Props) {
-	const schema = ClassSchema(t);
+	const schema = ClassSchema();
 	const {
 		register,
 		handleSubmit,
@@ -56,8 +56,8 @@ export default function AddClass({ onAddClass, initialData, title }: Props) {
 				<div className="w-full flex flex-col md:flex-row gap-5">
 					<ControlledTextField
 						id="className"
-						label={"className"}
-						placeholder={"Class Name"}
+						label={"className")}
+						placeholder={"Class Name")}
 						type="text"
 						name="className"
 						register={register}
@@ -123,7 +123,7 @@ export default function AddClass({ onAddClass, initialData, title }: Props) {
 						type="checkbox"
 						id="isArchived"
 						{...register("isArchived")}
-						className="h-4 w-4 accent-red-500 cursor-pointer"
+						className="h-4 w-4 accent-secondaryColor cursor-pointer"
 					/>
 					<span className="ml-2 text-gray-700">Archived class</span>
 				</label>

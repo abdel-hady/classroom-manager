@@ -7,7 +7,7 @@ import { SubjectSchema } from "@/components/subject/SubjectSchema";
 import ControlledTextField from "@/components/subject/ControlledTextField";
 
 type AsyncDefaultValues = {
-    subjectName?: string;
+    name?: string;
 	agenda?: string;
 	participants?: string;
 	objectives?: string;
@@ -46,9 +46,9 @@ export default function AddSubject({ onAddSubject, initialData, title }: Props) 
                         label={"subjectName"}
                         placeholder={"Subject Name"}
                         type="text"
-                        name="subjectName"
+                        name="name"
                         register={register}
-                        error={errors.subjectName?.message ? errors.subjectName?.message : undefined}
+                        error={errors.name?.message ? errors.name?.message : undefined}
                         className="w-full md:w-[50%]"
                     />
                     <ControlledTextField
@@ -100,7 +100,7 @@ export default function AddSubject({ onAddSubject, initialData, title }: Props) 
                         type="checkbox"
                         id="isArchived"
                         {...register("isArchived")}
-                        className="h-4 w-4 accent-red-500 cursor-pointer"
+                        className="h-4 w-4 accent-secondaryColor cursor-pointer"
                     />
                     <span className="ml-2 text-gray-700">{"archived_class"}</span>
                 </label>

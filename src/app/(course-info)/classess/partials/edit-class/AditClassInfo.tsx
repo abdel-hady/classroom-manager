@@ -24,15 +24,15 @@ export default function EditClassInfo({ initialData, onUpdate, title }: Props) {
         resolver: yupResolver<ClassDetails>(schema),
     });
 
-    // Get the teacher options from local storage
-    const [teacherOptions] = useState(() => {
-        const teacherDeatails = localStorage.getItem("teacherDetails");
-        return teacherDeatails ? JSON.parse(teacherDeatails) : [];
-    });
-    const [subjectOptions] = useState(() => {
-        const subjectDeatails = localStorage.getItem("subjectDetails");
-        return subjectDeatails ? JSON.parse(subjectDeatails) : [];
-    });
+    	// Get the teacher options from local storage
+	const [teacherOptions] = useState(() => {
+		const teacherDeatails = localStorage.getItem("teacherDetails");
+		return teacherDeatails ? JSON.parse(teacherDeatails) : [];
+	});
+	const [subjectOptions] = useState(() => {
+		const subjectDeatails = localStorage.getItem("subjectDetails");
+		return subjectDeatails ? JSON.parse(subjectDeatails) : [];
+	});
 
     const onSubmit = (data: ClassDetails) => {
         onUpdate(data);
@@ -53,21 +53,21 @@ export default function EditClassInfo({ initialData, onUpdate, title }: Props) {
                         className="w-full md:w-[50%]"
                     />
                     <SelectDropdown
-                        name="teacher"
-                        label='teacherName'
-                        errors={errors.teacher?.message ? errors.teacher?.message : undefined}
-                        register={register}
-                        options={teacherOptions}
-                    />
+						name="teacher"
+						label='teacherName'
+						errors={errors.teacher?.message ? errors.teacher?.message : undefined}
+						register={register}
+						options={teacherOptions}
+					/>
                 </div>
                 <div className="w-full flex flex-col md:flex-row gap-5">
                     <SelectDropdown
-                        name="subject"
-                        label='subjectName'
-                        errors={errors.subject?.message ? errors.subject?.message : undefined}
-                        register={register}
-                        options={subjectOptions}
-                    />
+						name="subject"
+						label='subjectName'
+						errors={errors.subject?.message ? errors.subject?.message : undefined}
+						register={register}
+						options={subjectOptions}
+					/>
                     <ControlledTextField
                         id="date"
                         label={"date"}
