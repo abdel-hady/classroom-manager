@@ -1,6 +1,5 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useTranslation } from "react-i18next";
 import { IoMdAddCircle } from "react-icons/io";
 import ActionBtn from "@/components/common/ActionBtn";
 import { TeacherSchema } from "@/components/teacher/TeacherSchema";
@@ -20,8 +19,7 @@ interface Props {
     title: string;
 }
 export default function AddTeacher({ onAddTeacher, initialData, title }: Props) {
-    const { t } = useTranslation();
-    const schema = TeacherSchema(t);
+    const schema = TeacherSchema();
     const {
         register,
         handleSubmit,
@@ -44,8 +42,8 @@ export default function AddTeacher({ onAddTeacher, initialData, title }: Props) 
                 <div className="w-full flex flex-col md:flex-row gap-5">
                     <ControlledTextField
                         id="teacherName"
-                        label={t("teacherName")}
-                        placeholder={t("Teacher Name")}
+                        label={"teacherName"}
+                        placeholder={"Teacher Name"}
                         type="text"
                         name="name"
                         register={register}
@@ -54,8 +52,8 @@ export default function AddTeacher({ onAddTeacher, initialData, title }: Props) 
                     />
                     <ControlledTextField
                         id="major"
-                        label={t("major")}
-                        placeholder={t("major")}
+                        label={"major"}
+                        placeholder={"major"}
                         type="text"
                         name="major"
                         register={register}
@@ -68,8 +66,8 @@ export default function AddTeacher({ onAddTeacher, initialData, title }: Props) 
                 <div className="w-full flex flex-col md:flex-row gap-5">
                     <ControlledTextField
                         id="address"
-                        label={t("address")}
-                        placeholder={t("address")}
+                        label={"address"}
+                        placeholder={"address"}
                         type="text"
                         name="address"
                         register={register}
@@ -80,8 +78,8 @@ export default function AddTeacher({ onAddTeacher, initialData, title }: Props) 
                     />
                     <ControlledTextField
                         id="experience"
-                        label={t("experience")}
-                        placeholder={t("experience")}
+                        label={"experience"}
+                        placeholder={"experience"}
                         type="text"
                         name="experience"
                         register={register}
@@ -103,11 +101,11 @@ export default function AddTeacher({ onAddTeacher, initialData, title }: Props) 
                         {...register("isArchived")}
                         className="h-4 w-4 accent-secondaryColor cursor-pointer"
                     />
-                    <span className="ml-2 text-gray-700">{t("archived_class")}</span>
+                    <span className="ml-2 text-gray-700">Archived class</span>
                 </label>
             </div>
             <div className="flex flex-row gap-5 justify-between mt-4">
-                <ActionBtn type="submit" className="bg-primaryColor hover:bg-secondaryColor" text={t("Add")}>
+                <ActionBtn type="submit" className="bg-primaryColor hover:bg-secondaryColor" text={"Add"}>
                     <IoMdAddCircle
                         size={24}
                         className="theme-icon dark:text-white transform transition-all duration-500 ease-in-out cursor-pointer hover:scale-110"
