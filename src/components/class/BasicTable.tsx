@@ -10,7 +10,6 @@ import {
 import { TableBody } from "./table-partials/TableBody";
 import { TableHead } from "./table-partials/TableHead";
 import NoData from "../fail/noData";
-import { useWindowResize } from "./hooks/useWindowResize";
 import { ClassDetails } from "@/util/types/Entity.type";
 
 interface TableProps {
@@ -27,7 +26,6 @@ export function BasicTable({
 	data,
 	columns,
 }: TableProps) {
-	const isSmallScreen = useWindowResize();
 	const {
 		getTableProps,
 		getTableBodyProps,
@@ -49,10 +47,9 @@ export function BasicTable({
 	return (
 		<div className="w-full flex flex-col justify-center items-center">
 			<table className="w-full mt-8" {...getTableProps()}>
-				<TableHead headerGroups={headerGroups} isSmallScreen={isSmallScreen} />
+				<TableHead headerGroups={headerGroups} />
 				<TableBody
 					rows={rows}
-					isSmallScreen={isSmallScreen}
 					getTableBodyProps={getTableBodyProps}
 					prepareRow={prepareRow}
 				/>

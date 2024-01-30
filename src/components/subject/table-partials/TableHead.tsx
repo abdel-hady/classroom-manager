@@ -3,14 +3,13 @@ import { RxCaretSort } from "react-icons/rx";
 import { SubjectDetails } from "@/util/types/Entity.type";
 interface TableHeadProps {
 	headerGroups: HeaderGroup<SubjectDetails>[];
-	isSmallScreen: boolean;
 }
 interface CustomRow<T extends object> extends HeaderGroup<T> {
 	getSortByToggleProps: () => TableSortByToggleProps;
 	isSorted: () => boolean;
 	isSortedDesc: () => boolean;
 }
-export function TableHead({ headerGroups, isSmallScreen }: TableHeadProps) {
+export function TableHead({ headerGroups }: TableHeadProps) {
 	return (
 		<thead className="">
 			{headerGroups.map((headerGroup) => (
@@ -27,7 +26,7 @@ export function TableHead({ headerGroups, isSmallScreen }: TableHeadProps) {
 							key={column.id}
 							style={{
 								display:
-									(column.id === "from" || column.id === "to") && isSmallScreen
+									(column.id === "from" || column.id === "to")
 										? "none"
 										: "table-cell",
 							}}

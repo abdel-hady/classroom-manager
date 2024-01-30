@@ -7,7 +7,6 @@ import {
     Row,
     TableToggleAllRowsSelectedProps,
 } from "react-table";
-import { useWindowResize } from "../class/hooks/useWindowResize";
 import NoData from "../fail/noData";
 import { TableHead } from "./table-partials/TableHead";
 import { TableBody } from "./table-partials/TableBody";
@@ -27,7 +26,6 @@ export function BasicTable({
     data,
     columns,
 }: TableProps) {
-    const isSmallScreen = useWindowResize();
     const {
         getTableProps,
         getTableBodyProps,
@@ -50,10 +48,9 @@ export function BasicTable({
     return (
         <div className="w-full flex flex-col justify-center items-center">
             <table className="w-full mt-8" {...getTableProps()}>
-                <TableHead headerGroups={headerGroups} isSmallScreen={isSmallScreen} />
+                <TableHead headerGroups={headerGroups} />
                 <TableBody
                     rows={rows}
-                    isSmallScreen={isSmallScreen}
                     getTableBodyProps={getTableBodyProps}
                     prepareRow={prepareRow}
                 />

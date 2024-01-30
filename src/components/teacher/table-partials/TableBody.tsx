@@ -3,7 +3,6 @@ import { Row, TableBodyPropGetter } from "react-table";
 
 interface TableBodyProps {
     rows: Row<TeacherDetails>[];
-    isSmallScreen: boolean;
     getTableBodyProps: (
         propGetter?: TableBodyPropGetter<TeacherDetails>
     ) => React.HTMLAttributes<HTMLTableSectionElement>;
@@ -12,7 +11,6 @@ interface TableBodyProps {
 
 export function TableBody({
     rows,
-    isSmallScreen,
     getTableBodyProps,
     prepareRow,
 }: TableBodyProps) {
@@ -31,8 +29,7 @@ export function TableBody({
                                 <td
                                     className={`text-center py-4 text-gray-500 
                                             ${(cell.column.id === "from" ||
-                                            cell.column.id === "to") &&
-                                            isSmallScreen
+                                            cell.column.id === "to")
                                             ? "hidden"
                                             : "table-cell"
                                         }`}
