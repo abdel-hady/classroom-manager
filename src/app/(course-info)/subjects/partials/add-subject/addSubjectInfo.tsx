@@ -104,11 +104,11 @@ export default function AddSubject({ onAddSubject, initialData, title }: Props) 
                         {...register("isArchived")}
                         className="h-4 w-4 accent-red-500 cursor-pointer"
                     />
-                    <span className="ml-2 text-gray-700">{t("archived_class")}</span>
+                    <span className="ml-2 text-gray-700">{"archived_class"}</span>
                 </label>
             </div>
             <div className="flex flex-row gap-5 justify-between mt-4">
-                <ActionBtn type="submit" className="" text={t("Add")}>
+                <ActionBtn type="submit" className="bg-primaryColor hover:bg-secondaryColor" text={"Add"}>
                     <IoMdAddCircle
                         size={24}
                         className="theme-icon dark:text-white transform transition-all duration-500 ease-in-out cursor-pointer hover:scale-110"

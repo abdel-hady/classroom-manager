@@ -83,7 +83,7 @@ export default function EditSubjectInfo({ initialData, onUpdate, title }: Props)
                 </div>
             </div>
             <div className="flex flex-row gap-5 justify-between mt-4">
-                <ActionBtn type="submit" className="bg-yellow-300" text={t("Edit")}>
+                <ActionBtn type="submit" className="bg-yellow-300" text={"Edit"}>
                     <LuFileEdit
                         size={24}
                         className="theme-icon dark:text-white transform transition-all duration-500 ease-in-out cursor-pointer hover:scale-110"
