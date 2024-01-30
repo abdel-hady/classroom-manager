@@ -101,13 +101,13 @@ export default function AddTeacher({ onAddTeacher, initialData, title }: Props) 
                         type="checkbox"
                         id="isArchived"
                         {...register("isArchived")}
-                        className="h-4 w-4 accent-red-500 cursor-pointer"
+                        className="h-4 w-4 accent-secondaryColor cursor-pointer"
                     />
                     <span className="ml-2 text-gray-700">{t("archived_class")}</span>
                 </label>
             </div>
             <div className="flex flex-row gap-5 justify-between mt-4">
-                <ActionBtn type="submit" className="" text={t("Add")}>
+                <ActionBtn type="submit" className="bg-primaryColor hover:bg-secondaryColor" text={t("Add")}>
                     <IoMdAddCircle
                         size={24}
                         className="theme-icon dark:text-white transform transition-all duration-500 ease-in-out cursor-pointer hover:scale-110"

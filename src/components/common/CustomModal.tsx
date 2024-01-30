@@ -27,8 +27,7 @@ export function CustomModal({
 						 top-1/4
 						 left-1/4
 							right-auto
-							bottom-auto
-							-translate-x-1/2 outline-none -translate-y-1/2 p-5 sm:px-10 sm:py-6 rounded-lg animate-fade-down ${className}`}
+							bottom-auto outline-none p-5 sm:px-10 sm:py-6 rounded-lg animate-fade-down ${className}`}
 			style={{
 				overlay: {
 					backgroundColor: "rgba(0,0,0,0.5)",
@@ -36,7 +35,7 @@ export function CustomModal({
 				content: {
 					right: "auto",
 					bottom: "auto",
-					marginRight: "-50%",
+					// marginRight: "-50%",
 				},
 			}}
 		>

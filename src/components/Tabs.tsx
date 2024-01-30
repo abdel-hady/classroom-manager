@@ -19,7 +19,7 @@ export default function Tabs() {
 	const pathname = usePathname();
 	return (
 		<div className="flex flex-col lg:flex-row justify-between items-center gap-2">
-			<div className="text-3xl text-[#FF7C34]">
+			<div className="text-3xl text-secondaryColor">
 				{/* Welcome <span></span> */}
 			</div>
 			<div className="flex flex-col md:flex-row gap-3 sm:gap-5">
@@ -27,7 +27,7 @@ export default function Tabs() {
 					const isActive = pathname.startsWith(link.href)
 
 					return (
-						<Link href={link.href} key={link.name} className={isActive ? "p-3 rounded-lg text-2xl bg-[#117578] transform transition-all duration-500 ease-in-out scale-95 sm:scale-100" : "p-3 rounded-lg text-2xl hover:bg-[#117578]"}>
+						<Link href={link.href} key={link.name} className={isActive ? "p-3 rounded-lg text-2xl bg-primaryColor transform transition-all duration-500 ease-in-out scale-95 sm:scale-100" : "p-3 rounded-lg text-2xl hover:bg-primaryColor"}>
 							{link.name}
 						</Link>)
 				})}

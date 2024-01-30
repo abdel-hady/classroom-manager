@@ -46,12 +46,13 @@ export default function TableActions({
 									onClick={() => handleEdit(parseInt(row.id))}
 								/>
 								{row.original.isArchived ?
-									<MdOutlineArchive
+									<MdOutlineUnarchive
 										size={30}
 										className="hover:dark:text-yellow-500 cursor-pointer hover:scale-105 outline-none"
 										onClick={() => handleArchive(parseInt(row.id))}
-									/> :
-									<MdOutlineUnarchive
+									/>
+									:
+									<MdOutlineArchive
 										size={30}
 										className="hover:dark:text-yellow-500 cursor-pointer hover:scale-105 outline-none"
 										onClick={() => handleArchive(parseInt(row.id))}
@@ -76,19 +77,19 @@ export default function TableActions({
 					data-tooltip-content="edit row"
 				/>
 				{row.original.isArchived ?
-					<MdOutlineArchive
-						size={32}
-						className="hover:dark:text-yellow-500 cursor-pointer hover:scale-105"
-						onClick={() => handleArchive(parseInt(row.id))}
-						data-tooltip-id="my-tooltip"
-						data-tooltip-content="archive row"
-					/> :
 					<MdOutlineUnarchive
 						size={32}
-						className="hover:dark:text-yellow-500 cursor-pointer hover:scale-105"
+						className="hover:dark:text-yellow-500 cursor-pointer hover:scale-105 outline-none"
 						onClick={() => { handleArchive(parseInt(row.id)) }}
 						data-tooltip-id="my-tooltip"
 						data-tooltip-content="unarchive row"
+					/> :
+					<MdOutlineArchive
+						size={32}
+						className="hover:dark:text-yellow-500 cursor-pointer hover:scale-105 outline-none"
+						onClick={() => handleArchive(parseInt(row.id))}
+						data-tooltip-id="my-tooltip"
+						data-tooltip-content="archive row"
 					/>
 				}
 				<RiDeleteBin6Line

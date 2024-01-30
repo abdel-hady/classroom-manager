@@ -9,7 +9,7 @@ import {
 } from "react-table";
 import { TableBody } from "./table-partials/TableBody";
 import { TableHead } from "./table-partials/TableHead";
-import NoData from "../fail/noData";
+import NoData from "../fail/NoData";
 import { ClassDetails } from "@/util/types/Entity.type";
 
 interface TableProps {

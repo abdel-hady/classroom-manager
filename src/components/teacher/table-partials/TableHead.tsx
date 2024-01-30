@@ -16,7 +16,7 @@ export function TableHead({ headerGroups }: TableHeadProps) {
                 <tr className="" {...headerGroup.getHeaderGroupProps()} key={headerGroup.id}>
                     {headerGroup.headers.map((column) => (
                         <th
-                            className={`px-1 py-2 lg:p-4 bg-[#117578] ${column.id === "className" ? "rounded-tl-lg rounded-bl-lg" : ""
+                            className={`px-1 py-2 lg:p-4 bg-primaryColor ${column.id === "name" ? "rounded-tl-lg rounded-bl-lg" : ""
                                 }${column.id === "Actions" ? "rounded-tr-lg rounded-br-lg" : ""}`}
                             {...column.getHeaderProps(
                                 column.id === "Actions"

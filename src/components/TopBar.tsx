@@ -11,7 +11,7 @@ const TopBar: React.FC = () => {
 				alt="login background"
 				width={1000}
 				height={1000}
-				className="bg-opacity-50  w-full h-screen object-cover"
+				className="bg-opacity-50 w-full h-screen object-cover "
 			/>
 			<div className="absolute top-[3%] left-[2%] md:left-[5%]">
 				<Image

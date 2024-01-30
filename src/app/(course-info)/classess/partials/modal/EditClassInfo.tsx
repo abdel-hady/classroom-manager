@@ -1,6 +1,6 @@
 import React from 'react';
 import { CustomModal } from '@/components/common/CustomModal';
-import EditClassInfo from '../edit-class/editClassInfo';
+import EditClassInfo from '../edit-class/AditClassInfo';
 import { ClassDetails } from '@/util/types/Entity.type';
 
 interface EditModalProps {
@@ -16,7 +16,7 @@ const EditModal = ({ isOpen, initialData, handleUpdate, onRequestClose, title }:
             isOpen={isOpen}
             onRequestClose={onRequestClose}
             contentLabel="Edit Class"
-            className="w-[96%] sm:w-[90%] lg:w-[70%] xl:w-[60%] 2xl:w-[50%]"
+            className="w-[96%] left-[2%] sm:w-[90%] sm:left-[5%] lg:w-[70%] lg:left-[15%] xl:w-[60%] xl:left-[20%] 2xl:w-[50%] 2xl:left-[25%]"
         >
             <EditClassInfo initialData={initialData} onUpdate={handleUpdate} title={title} />
         </CustomModal>

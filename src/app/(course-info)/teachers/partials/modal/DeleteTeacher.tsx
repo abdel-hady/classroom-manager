@@ -1,6 +1,6 @@
 import React from 'react';
 import { CustomModal } from '@/components/common/CustomModal';
-import DeleteRow from '../deleteRow';
+import DeleteRow from '../DeleteRow';
 
 interface DeleteModalProps {
     isOpen: boolean;

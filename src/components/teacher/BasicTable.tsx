@@ -7,7 +7,7 @@ import {
     Row,
     TableToggleAllRowsSelectedProps,
 } from "react-table";
-import NoData from "../fail/noData";
+import NoData from "../fail/NoData";
 import { TableHead } from "./table-partials/TableHead";
 import { TableBody } from "./table-partials/TableBody";
 import { TeacherDetails } from "@/util/types/Entity.type";

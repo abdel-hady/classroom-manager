@@ -18,7 +18,7 @@ const AddEntityButton: React.FC<Props> = ({
                     <ActionBtn
                         type="button"
                         text={entityType}
-                        className="transform transition-all duration-500 ease-in-out scale-95 sm:scale-100"
+                        className="transform transition-all duration-500 ease-in-out scale-95 sm:scale-100 bg-primaryColor hover:bg-secondaryColor"
                         onClick={handleAddEntity}
                     >
                         <IoMdAddCircle

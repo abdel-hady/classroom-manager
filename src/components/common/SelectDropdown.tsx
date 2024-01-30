@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { ControlledDropdownProps } from '../input/data';
+import { ControlledDropdownProps } from '../input/Data';
 
 export default function SelectDropdown({
     label, name, register, errors, options,
@@ -13,7 +13,7 @@ export default function SelectDropdown({
                     : ""
                     }`}
                 {...register(name)}>
-                <option disabled selected value="-1">{'pick_one'}</option>
+                <option disabled selected value="">{'pick_one'}</option>
 
                 {options.map((option) => (
                     <option key={option.name} value={option.value} className="capitalize">{option.name}</option>

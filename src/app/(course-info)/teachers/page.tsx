@@ -4,17 +4,17 @@ import { Column } from "react-table";
 import { BasicTable } from '@/components/teacher/BasicTable';
 import { BasicColumns } from '@/components/teacher/BasicColumns';
 import TableActions from '@/components/teacher/table-columns/Columns';
-import AddModal from './partials/Modal/addTeacher';
-import EditModal from './partials/Modal/editTeacherInfo';
-import DeleteModal from './partials/Modal/deleteTeacher';
+import AddModal from './partials/modal/AddTeacher';
+import EditModal from './partials/modal/EditTeacherInfo';
+import DeleteModal from './partials/modal/DeleteTeacher';
 import AddEntityButton from '@/components/common/AddEntityButton';
 import { toast } from "react-toastify";
 import { TeacherDetails } from '@/util/types/Entity.type';
 import LocalStorageServiceTeacher from '@/local/LocalStorageServiceTeacher';
 import useTeacherDetails from '@/components/teacher/hooks/useTeacherDetails';
 import { handleAddNew, handleArchive, handleDelete, handleEdit } from '@/components/common/CommonFunctions';
-import FilterSelect from '@/components/common/Filter/filterSelect';
 import { FilterOptions } from '@/components/common/Filter/FilterOption';
+import FilterSelect from '@/components/common/Filter/FilterSelect';
 
 export default function Teachers() {
     const [editIndex, setEditIndex] = useState<number | null>(null);
