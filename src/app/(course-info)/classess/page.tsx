@@ -102,6 +102,9 @@ export default function Classess() {
 
     // Function to submit class information and show a success message
     const submitClassInfo = (data: ClassDetails) => {
+        if (data.teacher === "") {
+            data.teacher = "-";
+        }
         setClassDetails((prevData) => [data, ...prevData]);
         setIsAdding(false);
         toast.success("Class added successfully", { position: "top-right" });

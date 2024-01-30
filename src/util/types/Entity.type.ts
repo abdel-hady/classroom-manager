@@ -1,6 +1,6 @@
 export interface ClassDetails {
 	className: string;
-	teacher: string;
+	teacher?: string;
 	subject: string;
 	date: string;
 	from?: string | undefined;
