@@ -14,7 +14,7 @@ const DeleteModal = ({ isOpen, setIsDeleting, handleDeleteClick, onRequestClose 
             isOpen={isOpen}
             onRequestClose={onRequestClose}
             contentLabel="Delete Class"
-            className="w-[90%] sm:w-[70%] md:w-[60%] lg:w-[50%] xl:w-[40%] 2xl:w-[35%]"
+            className="left-[5%] w-[90%] sm:w-[70%] sm:left-[15%] md:w-[60%] md:left-[20%] lg:w-[50%] lg:left-[25%] xl:w-[40%] xl:left-[30%] 2xl:w-[36%] 2xl:left-[32%]"
         >
             <DeleteRow setIsDeleting={setIsDeleting} handleDeleteClick={handleDeleteClick} />
         </CustomModal>

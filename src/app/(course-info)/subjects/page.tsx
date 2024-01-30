@@ -4,7 +4,6 @@ import { Column } from "react-table";
 import AddEntityButton from '@/components/common/AddEntityButton';
 import { toast } from "react-toastify";
 import { handleAddNew, handleArchive, handleDelete, handleEdit } from '@/components/common/CommonFunctions';
-import FilterSelect from '@/components/common/Filter/filterSelect';
 import { FilterOptions } from '@/components/common/Filter/FilterOption';
 import LocalStorageServiceSubject from '@/local/LocalStorageServiceSubject';
 import { SubjectDetails } from '@/util/types/Entity.type';
@@ -15,6 +14,7 @@ import AddModal from './partials/modal/AddSubject';
 import { BasicTable } from '@/components/subject/BasicTable';
 import { BasicColumns } from '@/components/subject/BasicColumns';
 import TableActions from '@/components/subject/table-columns/Columns';
+import FilterSelect from '@/components/common/Filter/FilterSelect';
 
 export default function Subjects() {
     const [editIndex, setEditIndex] = useState<number | null>(null);
