@@ -1,4 +1,4 @@
-<h1 align="center">classroom manager</h1>
+<h1 align="center">Classroom Manager</h1>
 
 ## Project Overview:
 The class management system is a web application designed to manage classes, teachers, and subjects. The system allows for the creation, modification, deletion, and archiving of classes, teachers, and subjects. Administrators can add a class and choose whether to assign a teacher or not. They can also filter by class, archived or not, or see all. The table can be arranged according to all columns. Additionally, teachers and materials can be added, modified, deleted, and archived. The columns can be arranged, and filtering can be done according to the material if it is archived or not. The system also includes a unique UI design.
