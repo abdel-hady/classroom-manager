@@ -12,7 +12,7 @@ interface ControlledTextFieldProps {
 	register: UseFormRegister<SubjectDetails>;
 	name:
 	| "agenda"
-	| "subjectName"
+	| "name"
 	| "participants"
 	| "objectives"
 	| "isArchived"

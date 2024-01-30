@@ -14,16 +14,17 @@ export function TableHead({ headerGroups, isSmallScreen }: TableHeadProps) {
 	return (
 		<thead className="">
 			{headerGroups.map((headerGroup) => (
-				<tr className="" {...headerGroup.getHeaderGroupProps()}>
+				<tr className="" {...headerGroup.getHeaderGroupProps()} key={headerGroup.id}>
 					{headerGroup.headers.map((column) => (
 						<th
-							className={`px-1 py-2 lg:p-4 bg-[#117578] ${column.id === "SubjectName" ? "rounded-tl-lg rounded-bl-lg" : ""
+							className={`px-1 py-2 lg:p-4 bg-[#117578] ${column.id === "name" ? "rounded-tl-lg rounded-bl-lg" : ""
 								}${column.id === "Actions" ? "rounded-tr-lg rounded-br-lg" : ""}`}
 							{...column.getHeaderProps(
 								column.id === "Actions"
 									? {}
 									: (column as CustomRow<SubjectDetails>).getSortByToggleProps()
 							)}
+							key={column.id}
 							style={{
 								display:
 									(column.id === "from" || column.id === "to") && isSmallScreen

@@ -24,6 +24,7 @@ export function TableBody({
                     <tr
                         className={`text-lg lg:text-xl even:bg-gray-100`}
                         {...row.getRowProps()}
+                        key={row.id}
                     >
                         {row.cells.map((cell) => {
                             return (
@@ -36,6 +37,7 @@ export function TableBody({
                                             : "table-cell"
                                         }`}
                                     {...cell.getCellProps()}
+                                    key={cell.value}
                                 >
                                     {cell.render("Cell")}
                                 </td>

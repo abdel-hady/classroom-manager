@@ -11,7 +11,7 @@ interface ControlledTextFieldProps {
     required?: boolean;
     register: UseFormRegister<TeacherDetails>;
     name:
-    | "teacherName"
+    | "name"
     | "major"
     | "address"
     | "experience"

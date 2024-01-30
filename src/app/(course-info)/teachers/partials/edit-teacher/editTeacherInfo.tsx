@@ -37,9 +37,9 @@ export default function EditTeacherInfo({ initialData, onUpdate, title }: Props)
                         label={t("teacherName")}
                         placeholder={t("Class Name")}
                         type="text"
-                        name="teacherName"
+                        name="name"
                         register={register}
-                        error={errors.teacherName?.message ? errors.teacherName?.message : undefined}
+                        error={errors.name?.message ? errors.name?.message : undefined}
                         className="w-full md:w-[50%]"
                     />
                     <ControlledTextField

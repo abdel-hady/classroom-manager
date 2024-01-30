@@ -24,17 +24,18 @@ export function TableBody({
 					<tr
 						className={`text-lg lg:text-xl even:bg-gray-100`}
 						{...row.getRowProps()}
+						key={row.id}
 					>
 						{row.cells.map((cell) => {
 							return (
 								<td
-									className={`text-center py-4 text-gray-500 ${
-										(cell.column.id === "from" || cell.column.id === "to") &&
+									className={`text-center py-4 text-gray-500 ${(cell.column.id === "from" || cell.column.id === "to") &&
 										isSmallScreen
-											? "hidden"
-											: "table-cell"
-									}`}
+										? "hidden"
+										: "table-cell"
+										}`}
 									{...cell.getCellProps()}
+									key={cell.value}
 								>
 									{cell.render("Cell")}
 								</td>

@@ -8,14 +8,14 @@ export interface ClassDetails {
 	isArchived?: boolean;
 }
 export interface TeacherDetails {
-	teacherName: string;
+	name: string;
 	address: string;
 	major: string;
 	experience: string;
 	isArchived?: boolean;
 }
 export interface SubjectDetails {
-	subjectName: string;
+	name: string;
 	agenda: string;
 	participants: string;
 	objectives: string;

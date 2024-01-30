@@ -4,7 +4,7 @@ import { Column } from "react-table";
 export const BasicColumns: Column<SubjectDetails>[] = [
 	{
 		Header: "Subject Name",
-		accessor: "subjectName",
+		accessor: "name",
 	},
 	{
 		Header: "Agenda",

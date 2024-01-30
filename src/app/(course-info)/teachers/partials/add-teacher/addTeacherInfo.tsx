@@ -9,7 +9,7 @@ import ControlledTextField from "@/components/teacher/ControlledTextField";
 
 type AsyncDefaultValues = {
     experience?: string;
-    teacherName?: string;
+    name?: string;
     major?: string;
     address?: string;
     isArchived: boolean;
@@ -47,9 +47,9 @@ export default function AddTeacher({ onAddTeacher, initialData, title }: Props) 
                         label={t("teacherName")}
                         placeholder={t("Teacher Name")}
                         type="text"
-                        name="teacherName"
+                        name="name"
                         register={register}
-                        error={errors.teacherName?.message ? errors.teacherName?.message : undefined}
+                        error={errors.name?.message ? errors.name?.message : undefined}
                         className="w-full md:w-[50%]"
                     />
                     <ControlledTextField

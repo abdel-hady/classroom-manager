@@ -14,7 +14,7 @@ export function TableHead({ headerGroups, isSmallScreen }: TableHeadProps) {
 	return (
 		<thead className="">
 			{headerGroups.map((headerGroup) => (
-				<tr className="" {...headerGroup.getHeaderGroupProps()}>
+				<tr className="" {...headerGroup.getHeaderGroupProps()} key={headerGroup.id}>
 					{headerGroup.headers.map((column) => (
 						<th
 							className={`px-1 py-2 lg:p-4 bg-[#117578] ${column.id === "className" ? "rounded-tl-lg rounded-bl-lg" : ""
@@ -24,6 +24,7 @@ export function TableHead({ headerGroups, isSmallScreen }: TableHeadProps) {
 									? {}
 									: (column as CustomRow<ClassDetails>).getSortByToggleProps()
 							)}
+							key={column.id}
 							style={{
 								display:
 									(column.id === "from" || column.id === "to") && isSmallScreen

@@ -15,8 +15,8 @@ export default function SelectDropdown({
                 {...register(name)}>
                 <option disabled selected value="-1">{'pick_one'}</option>
 
-                {options.map((op) => (
-                    <option value={op.value} className="capitalize">{op.label}</option>
+                {options.map((option) => (
+                    <option key={option.name} value={option.value} className="capitalize">{option.name}</option>
 
                 ))}
             </select>

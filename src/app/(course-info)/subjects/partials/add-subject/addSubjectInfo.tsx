@@ -8,7 +8,7 @@ import { SubjectSchema } from "@/components/subject/SubjectSchema";
 import ControlledTextField from "@/components/subject/ControlledTextField";
 
 type AsyncDefaultValues = {
-    subjectName?: string;
+    name?: string;
 	agenda?: string;
 	participants?: string;
 	objectives?: string;
@@ -48,9 +48,9 @@ export default function AddSubject({ onAddSubject, initialData, title }: Props) 
                         label={t("subjectName")}
                         placeholder={t("Subject Name")}
                         type="text"
-                        name="subjectName"
+                        name="name"
                         register={register}
-                        error={errors.subjectName?.message ? errors.subjectName?.message : undefined}
+                        error={errors.name?.message ? errors.name?.message : undefined}
                         className="w-full md:w-[50%]"
                     />
                     <ControlledTextField
