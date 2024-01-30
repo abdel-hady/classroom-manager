@@ -109,7 +109,7 @@ export default function AddClass({ onAddClass, initialData, title }: Props) {
 						type="time"
 						name="to"
 						register={register}
-						error={errors.from?.message ? errors.from?.message : undefined}
+						error={errors.to?.message ? errors.to?.message : undefined}
 						className="w-[50%]"
 					/>
 				</div>

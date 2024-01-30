@@ -13,7 +13,7 @@ export default function SelectDropdown({
                     : ""
                     }`}
                 {...register(name)}>
-                <option disabled selected value="">{'pick_one'}</option>
+                <option disabled selected value="">pick one</option>
 
                 {options.map((option) => (
                     <option key={option.name} value={option.value} className="capitalize">{option.name}</option>

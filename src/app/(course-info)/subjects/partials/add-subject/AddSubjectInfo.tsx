@@ -42,8 +42,8 @@ export default function AddSubject({ onAddSubject, initialData, title }: Props) 
                 <div className="text-gray-500 bold text-center text-2xl">{title}</div>
                 <div className="w-full flex flex-col md:flex-row gap-5">
                     <ControlledTextField
-                        id="subjectName"
-                        label={"subjectName"}
+                        id="subject Name"
+                        label={"Subject"}
                         placeholder={"Subject Name"}
                         type="text"
                         name="name"
@@ -102,7 +102,7 @@ export default function AddSubject({ onAddSubject, initialData, title }: Props) 
                         {...register("isArchived")}
                         className="h-4 w-4 accent-secondaryColor cursor-pointer"
                     />
-                    <span className="ml-2 text-gray-700">{"archived_class"}</span>
+                    <span className="ml-2 text-gray-700">archivedclass</span>
                 </label>
             </div>
             <div className="flex flex-row gap-5 justify-between mt-4">
