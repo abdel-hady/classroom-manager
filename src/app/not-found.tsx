@@ -16,7 +16,7 @@ export default function NotFound() {
                     className="w-full"
                 />
                 <h3 className="text-4xl mt-5 text-secondaryColor">
-                    {'not_found'}
+                    not found
                 </h3>
                 <div className="mt-4">
                     <LinkStandardBtn text={'Home'} href={'/'} />

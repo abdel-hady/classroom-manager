@@ -1,6 +1,5 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useTranslation } from "react-i18next";
 import { LuFileEdit } from "react-icons/lu";
 import { TeacherSchema } from "@/components/teacher/TeacherSchema";
 import ActionBtn from "@/components/common/ActionBtn";
@@ -13,8 +12,7 @@ interface Props {
     title: string;
 }
 export default function EditTeacherInfo({ initialData, onUpdate, title }: Props) {
-    const { t } = useTranslation();
-    const schema = TeacherSchema(t);
+    const schema = TeacherSchema();
     const {
         register,
         handleSubmit,
@@ -34,8 +32,8 @@ export default function EditTeacherInfo({ initialData, onUpdate, title }: Props)
                 <div className="w-full flex flex-col md:flex-row gap-5">
                     <ControlledTextField
                         id="teacherName"
-                        label={t("teacherName")}
-                        placeholder={t("Class Name")}
+                        label={"teacherName"}
+                        placeholder={"Class Name"}
                         type="text"
                         name="name"
                         register={register}
@@ -44,8 +42,8 @@ export default function EditTeacherInfo({ initialData, onUpdate, title }: Props)
                     />
                     <ControlledTextField
                         id="major"
-                        label={t("major")}
-                        placeholder={t("major")}
+                        label={"major"}
+                        placeholder={"major"}
                         type="text"
                         name="major"
                         register={register}
@@ -58,8 +56,8 @@ export default function EditTeacherInfo({ initialData, onUpdate, title }: Props)
                 <div className="w-full flex flex-col md:flex-row gap-5">
                     <ControlledTextField
                         id="experience"
-                        label={t("experience")}
-                        placeholder={t("experience")}
+                        label={"experience"}
+                        placeholder={"experience"}
                         type="text"
                         name="experience"
                         register={register}
@@ -70,8 +68,8 @@ export default function EditTeacherInfo({ initialData, onUpdate, title }: Props)
                     />
                     <ControlledTextField
                         id="address"
-                        label={t("address")}
-                        placeholder={t("address")}
+                        label={"address"}
+                        placeholder={"address"}
                         type="text"
                         name="address"
                         register={register}
@@ -83,7 +81,7 @@ export default function EditTeacherInfo({ initialData, onUpdate, title }: Props)
                 </div>
             </div>
             <div className="flex flex-row gap-5 justify-between mt-4">
-                <ActionBtn type="submit" className="bg-yellow-300" text={t("Edit")}>
+                <ActionBtn type="submit" className="bg-yellow-300" text={"Edit"}>
                     <LuFileEdit
                         size={24}
                         className="theme-icon dark:text-white transform transition-all duration-500 ease-in-out cursor-pointer hover:scale-110"

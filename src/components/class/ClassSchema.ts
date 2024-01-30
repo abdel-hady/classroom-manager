@@ -1,12 +1,12 @@
 import * as yup from "yup";
 
-export const ClassSchema = (t: (key: string) => string) => {
+export const ClassSchema = () => {
 	return yup.object().shape({
-		className: yup.string().required(t("classname_is_required")),
-		subject: yup.string().required(t("subject_is_required")),
-		date: yup.string().required(t("date_is_required")),
-		from: yup.string().required(t("start_time_is_required")),
-		to: yup.string().required(t("end_time_is_required")),
+		className: yup.string().required("Class name is required"),
+		subject: yup.string().required("Subject is required"),
+		date: yup.string().required("Date is required"),
+		from: yup.string().required("Start time  is required"),
+		to: yup.string().required("End time is required"),
 		isArchived: yup.bool(),
 		teacher: yup.string(),
 	});
